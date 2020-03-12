@@ -1,0 +1,59 @@
+2.
+word=input()
+counter=0
+my_list=[]
+
+for letter in word:
+    if letter.isupper():
+        upper_letter=letter
+        curr_counter=counter
+        my_list.append(curr_counter**1)
+    counter += 1
+
+print(my_list)
+
+3.
+strings=input()
+splits = str.split(strings)
+counter=len(strings.split())
+sheep_counter=0
+warning_counter=0
+
+
+for split in splits:
+    if counter==1:
+         if split == 'wolf':
+             print(f'Please go away and stop eating my sheep')
+         else:
+            print(f'Oi! Sheep number {warning_counter - 1}! You are about to be eaten by a wolf!')
+    if split[:-1]=='sheep' or split=='sheep':
+        sheep_counter+=1
+    if split[:-1]=='wolf' or split == 'wolf':
+        warning_counter=counter
+    counter-=1
+    
+    
+ 4.
+ strings=input()
+counter=0
+strings=strings.casefold()
+
+if strings.find('Sand'.casefold())>=0:
+    counter+=1
+if strings.find('Water'.casefold())>=0:
+    counter+=1
+if strings.find('Fish'.casefold())>=0:
+    counter += 1
+if strings.find('Sun'.casefold())>=0:
+    counter += 1
+
+print(counter)
+
+
+5.
+command = input()
+coffee=0
+
+while command!='END':
+    if command==command.lower():
+        coffee+=1
