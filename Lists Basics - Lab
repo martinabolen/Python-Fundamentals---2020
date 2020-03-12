@@ -1,0 +1,83 @@
+`1.
+n=int(input())
+courses=[]
+
+for i in range(n):
+    name=input()
+    courses.append(name)
+print(courses)
+
+2.
+a=input()
+b=input()
+c=input()
+list=[a,b,c]
+
+list[0],list[2]=list[2],list[0]
+
+print(list)
+
+3.
+n=int(input())
+positive_list=[]
+negative_list=[]
+
+for i in range(n):
+    number=int(input())
+    if number >=0:
+        positive_list.append(number)
+    else:
+        negative_list.append(number)
+
+count_of_positive=len(positive_list)
+sum_of_negavite=sum(negative_list)
+
+print(positive_list)
+print(negative_list)
+print(f'Count of positives: {count_of_positive}. Sum of negatives: {sum_of_negavite}')
+
+4.
+n=int(input())
+word=input()
+list=[]
+new_list=[]
+
+for i in range(n):
+    springs=input()
+    list.append(springs)
+print(list)
+
+for j in range(len(list)):
+    element=list[j]
+    if word in element:
+        new_list.append(element)
+print(new_list)
+
+
+5.
+n=int(input())
+even=[]
+odd=[]
+positive=[]
+negative=[]
+
+for i in range(n):
+    number=int(input())
+    if number>=0:
+        positive.append(number)
+    if number <0:
+        negative.append(number)
+    if number % 2==0:
+        even.append(number)
+    if number % 2!=0:
+        odd.append(number)
+
+command=input()
+if command=='positive':
+    print(positive)
+elif command=='negative':
+    print(negative)
+elif command=='even':
+    print(even)
+elif command=='odd':
+    print(odd)
