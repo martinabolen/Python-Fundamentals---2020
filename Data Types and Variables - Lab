@@ -1,0 +1,43 @@
+1.
+first_name=input()
+last_name=input()
+delimiter=input()
+
+print(f'{first_name}{delimiter}{last_name}')
+
+
+
+2.
+centurie=int(input())
+year=100*centurie
+days=int(365.2422*year)
+hour=days*24
+minutes=hour*60
+
+print(f'{centurie} centuries = {year} years = {days} days = {hour} hours = {minutes} minutes')
+
+
+3.
+n=int(input())
+sums=0
+
+for i in range(1,n+1):
+    sums=0
+    for digit in str(i):
+        sums+=int(digit)
+
+    is_special= sums==5 or sums==7 or sums==11
+    print(f'{i} -> {is_special}')
+    
+    
+    
+4.
+meters=float(input())
+kilometers=meters/1000
+print(f'{kilometers:.2f}')
+
+
+5.
+pound=int(input())
+dollars=pound*1.31
+print(f'{dollars:.3f}')
