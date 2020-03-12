@@ -1,0 +1,80 @@
+1.
+a=int(input())
+b=int(input())
+c=int(input())
+max_number=-999999
+
+if a > max_number:
+    max_number=a
+if b > max_number:
+    max_number=b
+if c > max_number:
+    max_number=c
+print(max_number)
+
+
+2.
+a1=int(input())
+b1=int(input())
+
+print(f'Before:')
+print(f'a = {a1}')
+print(f'b = {b1}')
+print(f'After:')
+print(f'a = {b1}')
+print(f'b = {a1}')
+
+
+3.
+numb=int(input())
+
+if numb%numb==0 and numb%1==0 and numb%2!=0 and numb%3!=0 and numb%5!=0:
+    is_prime=True
+else:
+    is_prime=False
+
+print(is_prime)
+
+
+4.
+key=int(input())
+n=int(input())
+
+for i in range(n):
+    letter=input()
+    letter_in_ord=ord(letter)+key
+    letter_again=chr(letter_in_ord)
+    print(letter_again,end='')
+
+5.
+n=int(input())
+counter=0
+valid=0
+unvalid=0
+counter1=0
+counter2=0
+check2=0
+
+for i in range(n):
+    symbol=input()
+    if symbol == ')' and check1 == 1:
+        counter -= 1
+    if symbol==')' and check1!=1:
+        counter1+=1
+        check1+=1
+    else:
+        check1=0
+    if symbol=='(' and check2==1:
+        counter -= 1
+    if symbol=='(' and check2!=1:
+        counter2+=1
+        check2+=1
+    else:
+        check2=0
+
+if counter1==counter2:
+    print('BALANCED')
+else:
+    print('UNBALANCED')
+
+
