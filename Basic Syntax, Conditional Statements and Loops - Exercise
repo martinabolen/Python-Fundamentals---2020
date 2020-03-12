@@ -1,0 +1,136 @@
+1.
+
+name=input()
+
+if name=='Johnny':
+    print('Hello, my love!')
+else:
+    print(f'Hello, {name}!')
+1
+name=input()
+
+
+2.
+age=int(input())
+
+if age <=14:
+    print('drink toddy')
+elif age <=18:
+    print('drink coke')
+elif age<=21:
+    print('drink beer')
+elif age > 21:
+    print('drink whisky')
+    
+    
+ 3.
+ oscar=int(input())
+
+if oscar==88:
+    print('Leo finally won the Oscar! Leo is happy')
+elif oscar==86:
+    print('Not even for Wolf of Wall Street?!')
+elif oscar!= 86 and oscar!=88 and oscar<88:
+    print('When will you give Leo an Oscar?')
+elif oscar >88:
+    print('Leo got one already!')
+    
+    
+ 4.
+ text=input()
+result=''
+
+for letters in text:
+    result+=letters*2
+
+print(result)
+
+
+5.
+number=int(input())
+
+for i in range(1,number+1):
+    print(f'{i} sheep...',end='')
+    
+    
+6.
+number=int(input())
+start=number+1
+
+while True:
+    year = str(start)
+    if len(set(year)) == len(year):
+        print(year)
+        break
+    start += 1
+  
+ 7.
+ divisor=int(input())
+bound=int(input())
+n=0
+max_number=-99999
+
+
+while n<=bound:
+    if n % divisor==0 and n <= bound and n>0:
+        if n > max_number:
+            max_number=n
+    n+=1
+
+print(max_number)
+
+
+9.
+budget=float(input())
+flour_price=float(input())
+eggs_price=flour_price*0.75
+milk_price=flour_price+flour_price*0.25
+milk_one_cozonac=milk_price/4
+curr_budget=flour_price+eggs_price+milk_one_cozonac
+colored_eggs=0
+counter=0
+
+while budget > curr_budget:
+    budget-=curr_budget
+    colored_eggs+=3
+    counter+=1
+    if counter%3==0:
+        colored_eggs=colored_eggs-(counter-2)
+print(f'You made {counter} cozonacs! Now you have {colored_eggs} eggs and {budget:.2f}BGN left.')
+
+
+10.
+quantity=int(input())
+days=int(input())
+counter=1
+costs=0
+spirit=0
+costs_ornament=0
+costs_tree=0
+
+while days >= counter:
+    if counter%11==0:
+        quantity+=2
+    if counter%2==0:
+        costs_ornament=costs_ornament+2*quantity
+        spirit+=5
+    if counter%3==0 :
+        spirit+=13
+        costs_tree=costs_tree+8*quantity
+    if counter%5==0:
+        spirit+=17
+        costs_tree=costs_tree+15*quantity
+        if counter%3==0 and counter%5==0:
+            spirit+=30
+    if counter%10==0:
+        spirit-=20
+        costs_tree+=23
+        if counter==10 and counter%10==0:
+            spirit-=30
+    costs=costs_ornament+costs_tree
+    counter+=1
+
+print(f'Total cost: {costs}')
+print(f'Total spirit: {spirit}')
+
+
