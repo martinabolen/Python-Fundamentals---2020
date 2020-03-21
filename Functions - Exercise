@@ -1,0 +1,212 @@
+1.
+def smallest_number(a,b,c):
+    min_number=99999999
+    list=[a,b,c]
+    for element in list:
+        if element < min_number:
+            min_number=element
+    return min_number
+
+a=int(input())
+b=int(input())
+c=int(input())
+
+print(smallest_number(a,b,c))
+
+
+2.
+def sum_numbers(a,b):
+    return a + b
+
+
+def subtract(c):
+    return sum_numbers(a,b)-c
+
+
+def add_and_subtract(a,b,c):
+    return subtract(c)
+
+a=int(input())
+b=int(input())
+c=int(input())
+
+print(add_and_subtract(a,b,c))
+
+
+3.
+def two_characters(a,b):
+    value1=ord(a)
+    value2=ord(b)
+    result=''
+    for i in range(value1+1,value2):
+        j=chr(i)
+        result+=j + ' '
+    return result
+
+
+a=input()
+b=input()
+
+print(two_characters(a,b))
+
+
+4.
+def odd_and_sum(a):
+    list=[int(i) for i in a]
+    even_sums=0
+    odd_sums=0
+    for number in list:
+        if int(number)%2==0:
+            even_sums+=int(number)
+        else:
+            odd_sums+=int(number)
+    return f'Odd sum = {odd_sums}, Even sum = {even_sums}'
+
+a=input()
+
+print(odd_and_sum(a))
+
+
+5.
+def palindromes(a):
+    list=a.split(', ')
+    result_total=''
+    counter=0
+    for element in list:
+         b=element[::-1]
+         if b==element:
+            result='True'
+         else:
+            result='False'
+         result_total+=result
+         result_total+='\n'
+    return result_total
+
+a=input()
+print(palindromes(a))
+
+
+6.
+def password(string):
+    list=[i for i in string]
+    valid_elements=[]
+    count_digits=0
+    for element in list:
+        if 48<=ord(element)<=57 or 65<=ord(element)<=90 or 97<=ord(element) <=122:
+            valid_elements.append(element)
+        if 48<=ord(element)<=57:
+            count_digits+=1
+
+    total_result=''
+    results=0
+    if 6<=len(list)<=10:
+        results+=1
+    else:
+        result='Password must be between 6 and 10 characters'
+        total_result+=result
+
+    result=''
+    if len(list)==len(valid_elements):
+        results+=1
+    else:
+        result='Password must consist only of letters and digits'
+        total_result+='\n'
+        total_result+=result
+
+    result=''
+    if count_digits >=2:
+        results+=1
+    else:
+        result='Password must have at least 2 digits'
+        total_result += '\n'
+        total_result+=result
+
+    if results==3:
+        result='Password is valid'
+        total_result=result
+    else:
+        total_result
+
+    return total_result
+
+string=input()
+print(password(string))
+
+
+
+7.
+def perfect_number(number):
+    result_set=[]
+    divisors=0
+    for i in range(1,number):
+        if number%i==0:
+            result_set.append(i)
+            divisors+=i
+
+    result=''
+    counter=0
+    if number==(divisors+number)/2:
+        result='We have a perfect number!'
+    else:
+        result='It\'s not so perfect.'
+
+    return result
+number=int(input())
+
+print(perfect_number(number))
+
+
+8.
+def loading_bar(number):
+    load_count=0
+    counter=0
+
+    for element in range(1,number+1):
+        if int(element)%10==0:
+            load_count+=1
+    result=''
+    for i in range(10):
+        if counter <load_count:
+            result+='%'
+        else:
+            result+='.'
+        counter += 1
+
+
+    procent=load_count * 10
+    if procent < 100:
+        results=f'{procent}% [{result}]'
+        results+='\n'
+        results+='Still loading...'
+    else:
+        results='100% Complete!'
+        results+= '\n'
+        results+= f'[{result}]'
+
+
+
+    return results
+
+
+number=int(input())
+print(loading_bar(number))
+
+
+9.
+def factorial_division(a,b):
+    multiply_a=1
+    multiply_b = 1
+    for number in range(1,a+1):
+        multiply_a=multiply_a*number
+
+    for number in range(1,b+1):
+        multiply_b = multiply_b * number
+
+    results=multiply_a/multiply_b
+    result=f'{results:.2f}'
+    return result
+
+a=int(input())
+b=int(input())
+
+print(factorial_division(a,b))
