@@ -1,0 +1,264 @@
+1.
+string=input()
+list=string.split()
+new_list=[]
+
+for element in list:
+    element=int(element)
+    new_element=-element
+    new_list.append(new_element)
+
+print(new_list)
+
+
+2.
+factor=int(input())
+count=int(input())
+list=[]
+i=1
+
+
+while len(list)<count:
+    if i % factor == 0:
+        list.append(i)
+    i+=1
+print(list)
+
+
+3.
+players_out = input().split(" ")
+
+team_A_out = []
+team_B_out = []
+
+for p in players_out:
+    team, player = p.split("-")
+    if team == "A":
+        team_A_out.append(player)
+    else:
+        team_B_out.append(player)
+team_A_out = set(team_A_out)
+team_B_out = set(team_B_out)
+print(f"Team A - {11 - len(team_A_out)}; Team B - {11 - len(team_B_out)}")
+if len(team_A_out) >= 5 or len(team_B_out) >= 5:
+    print(f"Game was terminated")
+    
+    
+    
+4.
+numbers = input().split(", ")
+beggars_list = [0] * int(input())
+counter = 0
+
+for number in numbers:
+    beggars_list[counter] += int(number)
+    counter += 1
+    if counter == len(beggars_list):
+        counter = 0
+print(beggars_list)
+
+
+5.
+string=input().split()
+n=int(input())
+half=len(string) / 2
+half=int(half)
+new_string=[]
+
+
+for i in range(n):
+    if i>0:
+        string=new_string
+        new_string=[]
+    for index in range(half):
+        new_string.append(string[index])
+        new_string.append(string[half+index])
+
+print(new_string)
+
+
+
+6.
+string=input()
+n=int(input())
+list=string.split()
+listt=[]
+small_list=[]
+smallest_number=9999999
+
+for numb in list:
+    listt.append(int(numb))
+
+for i in range(n):
+    for number in listt:
+        if number<smallest_number:
+            smallest_number=number
+    listt.remove(smallest_number)
+    smallest_number=9999999
+
+print(listt)
+
+
+
+7.
+command=input()
+new_list=[]
+
+while command != 'No Money':
+    list = command.split()
+    if list[0]=='OutOfStock':
+        if len(list)>=2:
+            search_word=list[1]
+            for index,element in enumerate(new_list):
+                if element==search_word:
+                    new_list[index]='None'
+    elif list[0]=='Required':
+        if 0 <= int(list[2]) < len(new_list):
+            new_list[int(list[2])]=list[1]
+    elif list[0]=='JustInCase':
+            new_list[-1] = list[1]
+    else:
+        new_list+=list
+    command=input()
+
+if command=='No Money':
+    unique = []
+    [unique.append(x) for x in new_list if x not in unique]
+    for element in unique:
+        if element=='None':
+            unique.remove('None')
+    print(' '.join(unique))
+
+
+
+8.
+fires = input().split("#")
+water = int(input())
+
+effort = 0
+total_fire = 0
+put_out_cells = []
+
+print("Cells:")
+
+for fire in fires:
+    args = fire.split(" = ")
+    fire_type = args[0]
+    level = int(args[1])
+    valid = False
+
+
+    if water < level:
+        continue
+
+    if fire_type == 'High':
+        if 81 <= level <= 125:
+            valid = True
+    elif fire_type == 'Medium':
+        if 51 <= level <= 80:
+            valid = True
+    elif fire_type == 'Low':
+        if 1 <= level <= 50:
+            valid = True
+
+    if valid:
+        put_out_cells.append(level)
+        water -= level
+        effort += level * 0.25
+        total_fire += level
+
+
+for cell in put_out_cells:
+    print(f' - {cell}')
+
+print(f'Effort: {effort:.2f}')
+print(f'Total Fire: {total_fire}')
+
+
+9.items=input()
+budget=float(input())
+list_items=items.split('|')
+new_prices=[]
+prices=0
+new_pricess=0
+
+for item in list_items:
+    list=item.split('->')
+    product=list[0]
+    price=float(list[1])
+    valid=False
+
+    if budget < price:
+        continue
+
+    if product=='Clothes' and price<=50:
+        valid=True
+    elif product=='Shoes' and price<=35:
+        valid=True
+    elif product=='Accessories' and price<=20.50:
+        valid=True
+
+    if valid:
+        budget-=price
+        new_price=f'{price+price*0.4:.2f}'
+        new_prices.append(new_price)
+        prices+=price
+        new_pricess=sum(float(x) for x in new_prices)
+
+
+profit=new_pricess-prices
+left_money=new_pricess+budget
+print(' '.join(new_prices))
+if profit>0:
+    print(f'Profit: {profit:.2f}')
+if left_money >=150:
+    print(f'Hello, France!')
+else:
+    print('Time to go.')
+
+
+
+10.
+strings=input()
+list=strings.split('|')
+energy=100
+coins=100
+bankrut=False
+
+for element in list:
+    events=element.split('-')
+    event=events[0]
+    number=int(events[1])
+
+    if event=='rest':
+        if energy + number>100:
+            gained_energy=100-energy
+            energy=100
+        else:
+            gained_energy=number
+            energy += number
+        print(f'You gained {gained_energy} energy.')
+        print(f'Current energy: {energy}.')
+    elif event=='order':
+        if energy-30>=0:
+            energy -= 30
+            print(f'You earned {number} coins.')
+            coins += number
+        else:
+            energy+=50
+            print('You had to rest!')
+    else:
+            coins-=number
+            if coins<=0:
+                print(f'Closed! Cannot afford {event}.')
+                bankrut=True
+                break
+            else:
+                print(f'You bought {event}.')
+
+
+if bankrut is False:
+    print(f'Day completed!')
+    print(f'Coins: {coins} ')
+    print(f'Energy: {energy} ')
+
