@@ -1,0 +1,114 @@
+1.
+def is_failed(grade):
+    return 2.00<=grade<=2.99
+
+
+def is_poor(grade):
+    return 3.00<=grade<=3.49
+
+
+def is_good(grade):
+    return 3.50<=grade<=4.49
+
+
+def is_very_good(grade):
+    return 4.50<=grade<=5.49
+
+
+def is_excellent(grade):
+    return 5.50<=grade<=6.00
+
+
+def solve(grade):
+    grades = [
+        [is_failed,'Fail'],
+        [is_poor,'Poor'],
+        [is_good,'Good'],
+        [is_very_good,'Very Good'],
+        [is_excellent,'Excellent'],
+    ]
+    for fn,result in grades:
+        if fn(grade):
+            return result
+
+grade=float(input())
+
+print(f'{solve(grade)}')
+
+
+2.
+def multiply(a,b):
+    return a * b
+
+
+def divide(a,b):
+    return int(a / b)
+
+
+def add(a,b):
+    return a + b
+
+
+def subtract(a,b):
+    return a - b
+
+
+def calculations(operation,a,b):
+    if operation=='multiply':
+        return multiply(a,b)
+    elif operation=='divide':
+        return divide(a,b)
+    elif operation=='add':
+        return add(a,b)
+    elif operation=='subtract':
+        return subtract(a,b)
+
+
+operation=input()
+a=int(input())
+b=int(input())
+
+
+print(calculations(operation,a,b))
+
+
+
+3.
+def repeat_string(string,rep):
+    return  string*rep
+
+string=input()
+rep=int(input())
+
+print(repeat_string(string,rep))
+
+
+4.
+def price_for_one_item(item):
+    if item=='coffee':
+        price=1.5
+    elif item=='water':
+        price=1.00
+    elif item=='coke':
+        price=1.40
+    elif item=='snacks':
+        price=2.00
+    return price
+
+def total_price(item,quantity):
+    return price_for_one_item(item)*quantity
+
+item=input()
+quantity=int(input())
+
+print(f'{total_price(item,quantity):.2f}')
+
+
+5.
+def rectangle_area(a,b):
+    return a * b
+
+a=int(input())
+b=int(input())
+
+print(rectangle_area(a,b))
