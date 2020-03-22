@@ -1,0 +1,70 @@
+1.
+def data_types(type,number):
+    if type=='int':
+        return int(number) * 2
+    elif type=='real':
+        return f'{float(number) * 1.5:.2f}'
+    elif type=='string':
+        return f'${number}$'
+
+type=input()
+number=input()
+
+print(data_types(type,number))
+
+
+4.
+counter = 0
+num=int(input())
+sum = 0
+counter_start=0
+sums = [1]
+new_sum=0
+index=0
+
+
+for i in range(1,num):
+    counter+=1
+    counter_start += 1
+    if counter_start < 3:
+        sums.append(i)
+    else:
+        index=0
+        index+=counter
+        new_sum=0
+        for index,element in enumerate(sums[index-3:index]):
+            number=int(element)
+            new_sum+=number
+        sums.append(new_sum)
+
+
+for element in sums:
+    print(int(element),end=' ')
+    
+    
+    
+    
+5.
+num1=int(input())
+num2=int(input())
+num3=int(input())
+list=[num1,num2,num3]
+positives=[]
+negatives=[]
+zeros=[]
+
+for number in list:
+    if number >0:
+        positives.append(number)
+    elif number < 0:
+        negatives.append(number)
+    elif number==0:
+        zeros.append(number)
+
+if len(positives)==3 or len(negatives)==2:
+    print('positive')
+elif len(negatives)==1 or len(negatives)==3:
+    print('negative')
+elif len(zeros) > 0:
+    print('zero')
+
