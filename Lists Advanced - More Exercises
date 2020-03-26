@@ -1,0 +1,113 @@
+1.
+numbers=[x for x in input().split()]
+string=input()
+output=''
+
+indexes=[]
+for element in numbers:
+    sum=0
+    for i in element:
+        sum+=int(i)
+    indexes.append(sum)
+
+for index in indexes:
+    while index>=len(string):
+        index=index//len(string)
+    output+=string[index]
+    string2=string[:index]+string[index+1:]
+    string=string2
+
+print(output)
+
+
+2.
+list=[int(i) for i in input().split()]
+half=int((len(list)-1)/2)
+list1=list[0:half]
+list2=list[half+1:len(list)]
+sums1=0
+sums2=0
+
+for number in list1:
+    if number==0:
+        sums1=sums1*0.8
+    else:
+        sums1+=number
+
+for number in list2[::-1]:
+    if number == 0:
+        sums2 = sums2 * 0.8
+    else:
+        sums2 += number
+
+if sums1 < sums2:
+    print(f'The winner is left with total time: {sums1:.1f}')
+else:
+    print(f'The winner is right with total time: {sums2:.1f}')
+
+
+3.
+string=input()
+numbers=[]
+non_numbers=[]
+take_list=[]
+skip_list=[]
+
+for letter in string:
+    if letter.isdigit():
+        numbers.append(int(letter))
+    else:
+        non_numbers.append(letter)
+
+for index,number in enumerate(numbers):
+    if index%2!=0:
+        skip_list.append(number)
+    else:
+        take_list.append(number)
+
+skipped_string=''
+taken_string=''
+non_numbers=''.join(non_numbers)
+non_numbers_count=0
+
+for index1,index2 in zip(skip_list,take_list):
+    taken_string+=non_numbers[:index2]
+    non_numbers=non_numbers[index2:]
+    non_numbers = non_numbers[index1:]
+    non_numbers_count += index1
+
+
+print(taken_string)
+
+
+4.
+numbers=[int(i) for i in input().split(', ')]
+minimum=int(input())
+biggest_number=-99999999
+new_numbers=[]
+
+for index,number in enumerate(numbers):
+    if number > biggest_number:
+        biggest_number=number
+        current_index=index
+
+for element in numbers:
+    if biggest_number==minimum:
+        for index, number in enumerate(numbers):
+            if number > biggest_number:
+                biggest_number = number
+                current_index = index
+    if biggest_number < minimum:
+        print('No equal distribution possible')
+        break
+    if element < minimum:
+        biggest_number=biggest_number-(minimum-element)
+        numbers[current_index]=biggest_number
+        element=minimum
+        new_numbers.append(element)
+    else:
+        new_numbers.append(element)
+
+if biggest_number >= minimum:
+    print(new_numbers)
+    
