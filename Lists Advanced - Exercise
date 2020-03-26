@@ -1,0 +1,113 @@
+1.
+words=input().split(', ')
+string=input()
+new_words=[]
+
+print([word for word in words if word in string])
+
+
+2.
+numbers=[i for i in input().split()]
+
+numbers.sort(reverse=True)
+string=''
+for i in numbers:
+    string+=i
+print(string)
+
+
+3.
+version=[int(i) for i in input().split('.')]
+one=int(version[0])
+two=int(version[1])
+three=int(version[2])
+
+for number in version:
+    if three < 9:
+        version[2]=three+1
+    elif three == 9 and two < 9:
+        version[2]=0
+        version[1]=two+1
+    else:
+        version[2]=0
+        version[1]=0
+        version[0]=one+1
+
+
+print('.'.join([str(i) for i in version]))
+
+
+4.
+rooms=int(input())
+room_count=0
+count_left=0
+free_chairs=0
+
+
+for i in range(rooms):
+    cheers = [i for i in input().split()]
+    count_cheers = [element for element in cheers[0]]
+    room_count+=1
+    if count_cheers.count('X')<int(cheers[1]):
+        count_needed=int(cheers[1])-count_cheers.count('X')
+        print(f'{count_needed} more chairs needed in room {room_count}')
+        free_chairs=0
+    else:
+        free_chairs+=1
+        count_left+=(count_cheers.count('X')-int(cheers[1]))
+
+if free_chairs==rooms:
+    print(f'Game On, {count_left} free chairs left')
+
+
+5.
+number=int(input())
+list=[int(i) for i in range(number)]
+max_number=[]
+from math import  sqrt
+
+for index,element in enumerate(list):
+    if sum(max_number)+(2*((index+1)**2)) > number :
+        max_number.append(number-sum(max_number))
+        break
+    if sum(max_number)==number:
+        break
+    max_number.append(2*((index+1)**2))
+
+print(max_number)
+
+
+6.
+numbers=[int(i) for i in input().split(', ')]
+max_group=10
+new_list=[]
+
+while len(numbers)> 0:
+    for number in numbers:
+        if number<=max_group:
+            new_list.append(number)
+    print(f'Group of {max_group}\'s: {new_list}')
+    max_group+=10
+    numbers = [int(number) for number in numbers if number not in new_list]
+    new_list=[]
+
+
+7.
+string=[i for i in input().split(' ')]
+strings=''
+
+for word in string:
+    letters=[i for i in word]
+    numbers=''
+    for letter in letters:
+        if letter.isdigit():
+            numbers+=letter
+    letters=[element for element in letters if element not in numbers]
+    new_letter=chr(int(numbers))
+    letters[0],letters[-1]=letters[-1],letters[0]
+    letters.insert(0, new_letter)
+    string=''.join(letters)
+    strings+=string + ' '
+
+
+print(strings)
