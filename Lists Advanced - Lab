@@ -1,0 +1,72 @@
+1.
+wagons=int(input())
+list=[0]*wagons
+command=input()
+while command!='End':
+    command_list=command.split()
+    if command_list[0]=='add':
+        list[len(list)-1]=int(command_list[1])+int(list[len(list)-1])
+    elif command_list[0]=='insert':
+        list[int(command_list[1])]=int(command_list[2])+int(list[int(command_list[1])])
+    elif command_list[0]=='leave':
+        list[int(command_list[1])]=int(list[int(command_list[1])])-int(command_list[2])
+    command=input()
+
+
+print(list)
+
+
+2.
+command=input()
+list=[]
+
+while command!='End':
+     command_list=command.split('-')
+     index=int(command_list[0])
+     to_do=command_list[1]
+     list.append([index,to_do])
+
+     command=input()
+
+     def index(element):
+        return element[0]
+
+
+new_list=(sorted(list,key=index))
+print([element[1] for element in new_list])
+
+
+3.
+string=input()
+searched_palinrome=input()
+list=string.split()
+palindrome=[]
+palindrome_count=0
+
+palindrome=[element for element in list if element==element[::-1]]
+palindrome_count=list.count(searched_palinrome)
+
+print(palindrome)
+print(f'Found palindrome {palindrome_count} times')
+
+
+4.
+numbers=[int(n.strip()) for n in input().split(',')]
+even_number_indexes=[index for index,number in enumerate(numbers) if number%2==0]
+
+print(even_number_indexes)
+
+
+5.
+numbers=[int(number) for number in input().split(' ')]
+factor=int(input())
+increased_happiness_employees=list(map(lambda h:h * factor,numbers))
+average_happines=sum(increased_happiness_employees)/len(increased_happiness_employees)
+over_average_happiness=list(filter(lambda h:h>=average_happines,increased_happiness_employees ))
+
+
+if len(over_average_happiness)>=len(numbers)/2:
+    print(f'Score: {len(over_average_happiness)}/{len(numbers)}. Employees are happy!')
+else:
+    print(f'Score: {len(over_average_happiness)}/{len(numbers)}. Employees are not happy!')
+
