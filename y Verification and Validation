@@ -1,0 +1,22 @@
+1.def binary_to_decimal(number):
+    result=0
+    factor=len(number)-1
+    for i in number:
+        result+=int(i) * 2 ** factor
+        factor-=1
+    return result
+
+number=input()
+print(binary_to_decimal(number))
+
+
+2.def decimal_to_binary(number):
+    result=''
+
+    while number > 0:
+        result=str(number % 2) + result
+        number=number//2
+    return result
+
+number=int(input())
+print(decimal_to_binary(number))
