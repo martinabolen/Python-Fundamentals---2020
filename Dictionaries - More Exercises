@@ -1,0 +1,133 @@
+1.
+passwords={}
+
+while True:
+    command=input()
+    if command=='end of contests':
+        break
+    contest=command.split(':')[0]
+    password=command.split(':')[1]
+    passwords[contest]=password
+
+ranking={}
+
+while True:
+    command=input()
+    if command=='end of submissions':
+        break
+    contest=command.split('=>')[0]
+    password=command.split('=>')[1]
+    name=command.split('=>')[2]
+    points=int(command.split('=>')[3])
+    if contest in passwords:
+        if passwords[contest]==password:
+            if name not in ranking:
+                ranking[name]={contest:points}
+            else:
+                if contest in ranking[name]:
+                    if points>ranking[name][contest]:
+                        ranking[name][contest]=points
+                else:
+                    ranking[name][contest]=points
+
+if command=='end of submissions':
+    max_points=-999999
+    for key,values in ranking.items():
+        sums=0
+        for value in values.values():
+            sums+=value
+            if sums>max_points:
+                max_points=sums
+                current_key=key
+
+    print(f'Best candidate is {current_key} with total {max_points} points.')
+    print('Ranking:')
+    ranking=dict(sorted(ranking.items()))
+    for key,values in ranking.items():
+        values=dict(sorted(values.items(),key=lambda el:(-el[1])))
+        print(key)
+        for k,v in values.items():
+            print(f'#  {k} -> {v}')
+            
+            
+2.
+from collections import defaultdict
+judge={}
+users=defaultdict(int)
+
+while True:
+    command=input()
+    if command=='no more time':
+        break
+    username=command.split(' -> ')[0]
+    contest=command.split(' -> ')[1]
+    points=int(command.split(' -> ')[2])
+    if contest not in judge:
+        judge[contest]={username:points}
+        users[username]+=points
+    else:
+         if username in judge[contest]:
+            if points>judge[contest][username]:
+                judge[contest][username]=points
+                users[username]=points
+         else:
+            judge[contest][username]=points
+            users[username]+=points
+
+if command=='no more time':
+    for key,value in judge.items():
+        print(f'{key}: {len(value)} participants')
+        value=dict(sorted(value.items(),key=lambda el: (-el[1],el[0])))
+        position=0
+        for k,v in value.items():
+            position+=1
+            print(f'{position}. {k} <::> {v}')
+    print('Individual standings:')
+    pos=0
+    users=dict(sorted(users.items(),key=lambda el:(-el[1],el[0])))
+    for k,v in users.items():
+        pos+=1
+        print(f'{pos}. {k} -> {v}')
+        
+        
+3.
+players={}
+
+while True:
+    command=input()
+    if command=='Season end':
+        break
+    if '->' in command:
+        player=command.split(' -> ')[0]
+        position=command.split(' -> ')[1]
+        skills=int(command.split(' -> ')[2])
+        if player not in players:
+            players[player]={position:skills}
+        else:
+            if position in players[player]:
+                if skills>players[player][position]:
+                    players[player][position]=skills
+            else:
+                players[player][position]=skills
+    elif 'vs' in command:
+        player1=command.split(' vs ')[0]
+        player2=command.split(' vs ')[1]
+        if player1 in players and player2 in players:
+            for key,value in players[player1].items():
+                for k,v in players[player2].items():
+                    if key==k:
+                        if value>v:
+                            players.pop(player2)
+                            break
+                        elif v<value:
+                            players.pop(player1)
+                            break
+
+
+if command=='Season end':
+    players=dict(sorted(players.items(),key=lambda el:(-sum(el[1].values()),el[0])))
+    for key,value in players.items():
+        print(f'{key}: {sum(value.values())} skill')
+        value=dict(sorted(value.items(),key=lambda el:(-el[1],el[0])))
+        for k,v in value.items():
+            print(f'- {k} <::> {v}')
