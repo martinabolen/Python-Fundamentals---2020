@@ -1,0 +1,69 @@
+1.
+list=input().split(' ')
+result={}
+
+for i in range(0,len(list),2):
+    key=list[i]
+    value=list[i+1]
+    result[key]=int(value)
+
+print(result)
+
+
+2.
+list=input().split(' ')
+products=input().split(' ')
+result={list[i]:int(list[i+1]) for i in range(0,len(list),2)}
+
+for element in products:
+    if element in list:
+        print(f'We have {result[element]} of {element} left')
+    else:
+        print(f"Sorry, we don't have {element}")
+        
+        
+3.
+from _collections import defaultdict
+stock=defaultdict(int)
+
+while True:
+    command=input()
+    if command=='statistics':
+        break
+    product,quantity=command.split(': ')
+    stock[product]+=int(quantity)
+
+if command=='statistics':
+    print(f'Products in stock:')
+for product,quantity in stock.items():
+    print(f'- {product}: {quantity}')
+print(f'Total Products: {len(stock.keys())}')
+print(f'Total Quantity: {sum(stock.values())}')
+
+
+4.
+words=[word.lower() for word in input().split(' ')]
+from collections import defaultdict
+occurrences=defaultdict(int)
+
+for word in words:
+    occurrences[word]+=1
+
+for word,count in occurrences.items():
+    if count%2!=0:
+        print(word,end=' ')
+        
+        
+5.
+n=int(input())
+from collections import defaultdict
+words=defaultdict(list)
+
+for i in range(n):
+    word=input()
+    synonym=input()
+    words[word].append(synonym)
+
+
+for word,synonym in words.items():
+    print(f"{word} - {', '.join(synonym)} ")
