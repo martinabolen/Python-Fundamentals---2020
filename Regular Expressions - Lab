@@ -1,0 +1,32 @@
+1.
+import re
+pattern=r'\b[A-Z][a-z]+\s[A-Z][a-z]+\b'
+text=input()
+result=re.findall(pattern,text)
+print(' '.join(result))
+
+
+2.
+import re
+pattern=r'\+359-2-\d{3}-\d{4}\b|\+359 2 \d{3} \d{4}\b'
+text=input()
+result=re.findall(pattern,text)
+print(', '.join(result))
+
+
+3.
+import re
+pattern=r'\b(?P<day>\d{2})([-./])(?P<month>[A-Z][a-z]{2})\2(?P<year>\d{4})\b'
+text=input()
+results=re.findall(pattern,text)
+for result in results:
+    print(f'Day: {result[0]}, Month: {result[2]}, Year: {result[3]}')
+    
+    
+4.
+import re
+pattern=r'(^|(?<=\s))-?\d+(\.\d+)?($|(?=\s))'
+text=input()
+results=re.finditer(pattern,text)
+for result in results:
+    print(result.group(0),end=' ')
