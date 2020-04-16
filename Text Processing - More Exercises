@@ -1,0 +1,101 @@
+1.
+n=int(input())
+
+for i in range(n):
+    strings=input()
+    name_one=strings.find('@')
+    name_two=strings.find('|')
+    age_one=strings.find('#')
+    age_two=strings.find('*')
+    name=strings[name_one+1:name_two]
+    age=strings[age_one+1:age_two]
+    print(f'{name} is {age} years old.')
+    
+    
+2.
+char_one=ord(input())
+char_two=ord(input())
+string=input()
+sums=0
+
+for letter in string:
+    letter=ord(letter)
+    if char_one < letter < char_two:
+        sums+=letter
+
+print(sums)
+
+
+3.
+keys=input().split(' ')
+command=input()
+messages=[]
+
+while True:
+    i=0
+    message = ''
+    if command=='find':
+        break
+    for letter in command:
+        if i==len(keys):
+            i=0
+        letter=ord(letter)
+        letter-=int(keys[i])
+        message+=chr(letter)
+        i+=1
+    messages.append(message)
+    command=input()
+
+for message in messages:
+    type=message.split('&')[1]
+    coordinates_one=message.find('<')
+    coordinates_two=message.find('>')
+    coordinates=message[coordinates_one+1:coordinates_two]
+    print(f'Found {type} at {coordinates}')
+
+
+4.
+string=input()
+
+mors = {'.-': 'A',   '-...': 'B',   '-.-.': 'C',
+       '-..': 'D',      '.': 'E',   '..-.': 'F',
+       '--.': 'G',   '....': 'H',     '..': 'I',
+       '.---': 'J',    '-.-': 'K',   '.-..': 'L',
+       '--': 'M',     '-.': 'N',    '---': 'O',
+       '.--.': 'P',   '--.-': 'Q',    '.-.': 'R',
+       '...': 'S',      '-': 'T',    '..-': 'U',
+       '...-': 'V',    '.--': 'W',   '-..-': 'X',
+       '-.--': 'Y',   '--..': 'Z'}
+
+
+
+
+
+string=string.split(' | ')
+total_result=''
+for word in string:
+    word=word.strip()
+    result=''
+    for letter in word.split(' '):
+        result+=mors[letter]
+    total_result+=(result + ' ')
+print(total_result)
+
+
+5.
+title=input()
+content=input()
+comments_list=[]
+
+
+while True:
+    comments = input()
+    if comments=='end of comments':
+        break
+    comments_list.append(comments)
+
+
+print(f'<h1>\n  {title}\n</h1>')
+print(f'<article>\n  {content}\n</article>')
+for comment in comments_list:
+    print(f'<div>\n  {comment}\n</div>')
