@@ -1,0 +1,63 @@
+1.
+def reverse(s):
+    return ''.join(reversed(s))
+
+
+result={}
+
+while True:
+    s=input()
+    if s == 'end':
+        break
+    result[s]=reverse(s)
+
+for k,v in result.items():
+    print(f'{k} = {v}')
+    
+    
+2.
+list=input().split(' ')
+result=''
+
+for string in list:
+    result+=(string*len(string))
+print(result)
+
+
+3.
+word=input()
+string=input()
+
+while word in string:
+    string=string.replace(word,'')
+print(string)
+
+
+4.
+banned_words=input().split(', ')
+text=input()
+
+for word in banned_words:
+    while word in text:
+        text=text.replace(word,'*' * len(word))
+
+print(text)
+
+
+5.
+string=input()
+a=''
+b=''
+c=''
+
+for letter in string:
+    if letter.isdigit():
+        a+=letter
+    elif letter.isalpha():
+        b+=letter
+    else:
+        c+=letter
+
+print(a)
+print(b)
+print(c)
