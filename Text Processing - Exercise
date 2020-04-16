@@ -1,0 +1,235 @@
+1.
+all_names = input().split(", ")
+valid_names = []
+for name in all_names:
+    if 3 <= len(name) <= 16:
+        all_valid = True
+        valid_name = ""
+        for letter in name:
+            if letter.isalpha() or letter.isdigit() or letter == "-" or letter == "_":
+                valid_name += letter
+            else:
+                all_valid = False
+                break
+        if all_valid:
+            valid_names += [valid_name]
+print("\n".join(valid_names))
+
+
+2.
+words=input().split(' ')
+import string
+word1=words[0]
+word2=words[1]
+i=0
+sums=0
+lenght1=len(word1)
+lenght2=len(word2)
+new_sum=0
+flag=False
+
+while True:
+    i=0
+    if lenght1==0:
+        for letter in word2:
+            new_sum+=ord(letter)
+        sums+=new_sum
+        flag=True
+        break
+    elif lenght2==0:
+        for letter in word1:
+            new_sum+=ord(letter)
+            sums+=new_sum
+            flag=True
+            break
+    if flag:
+        break
+    sums+=(ord(word1[i])*ord(word2[i]))
+    lenght1-=1
+    lenght2-=1
+    word1=word1[i+1:len(word1)]
+    word2=word2[i+1:len(word2)]
+
+print(sums)
+
+
+3.
+file=input().split("\\")
+word=file[len(file)-1]
+
+punct=word.find('.')
+
+print(f'File name: {word[0:punct]}')
+print(f'File extension: {word[punct+1:len(word)]}')
+
+
+4.
+string=input()
+word=''
+
+for letter in string:
+    new_letter=chr(ord(letter)+3)
+    word+=new_letter
+
+print(word)
+
+
+5.
+strings=input()
+previous_letter=':'
+i=0
+counter=0
+
+for letter in strings:
+    counter+=1
+    if letter==':' and counter<len(strings):
+        i+=1
+        continue
+    if i==1 and letter!=' ':
+        print(previous_letter+letter)
+        i=0
+
+6.
+string=input()
+previous_letter=''
+result=''
+
+for letter in string:
+    if letter!=previous_letter:
+        result+=letter
+    previous_letter=letter
+
+print(result)
+
+
+7.
+string=input()
+power=0
+i=0
+
+while i < len(string):
+    char=string[i]
+    if char=='>':
+        power+=int(string[i+1])
+    elif power>0:
+        string=string[:i] + string[i+1:]
+        i-=1
+        power-=1
+        pass
+    i+=1
+
+print(string)
+
+
+8.
+string=input().split(' ')
+i=0
+total_sums=0
+
+while '' in string:
+    string.remove('')
+
+def char_position(letter):
+    number=96
+
+    if letter.isupper():
+        number=64
+
+    return ord(letter) - number
+
+
+for word in string:
+    first_letter=word[0]
+    last_letter=word[len(word)-1]
+    number=int(word[1:-1])
+    sums=0
+    if first_letter.isupper():
+        sums+=(number/char_position(first_letter))
+    elif first_letter.islower():
+        sums+=(number*char_position(first_letter))
+    if last_letter.isupper():
+        sums-=char_position(last_letter)
+    elif last_letter.islower():
+        sums+=char_position(last_letter)
+    total_sums+=sums
+
+print(f'{total_sums:.2f}')
+
+
+9.
+string=input()
+i=0
+rep_string=''
+unique_symbols=[]
+new_string=''
+
+while i < len(string):
+    if string[i].isdigit():
+        if i+1<len(string):
+            if not string[i+1].isdigit():
+                power=int(string[i])
+            else:
+                power=int(string[i]+string[i+1])
+                i+=1
+            new_string += (rep_string * power)
+            rep_string = ''
+        else:
+            power = int(string[i])
+            new_string += (rep_string * power)
+    else:
+        rep_string+=string[i].upper()
+        if string[i].lower() not in unique_symbols:
+             unique_symbols.append(string[i].lower())
+    i+=1
+
+unique_symbols=list(set(unique_symbols))
+print(f'Unique symbols used: {len(unique_symbols)}')
+print(new_string)
+
+
+10.
+string=input().split(', ')
+
+def winning_symbol(string):
+    counter=0
+    valid=False
+    winn_symbol=''
+    repeated_counter=0
+    for symbol in string:
+        if string.count(symbol)>=6 and symbol in('@','#','$','^'):
+            winn_symbol=symbol
+        if symbol == winn_symbol:
+            counter += 1
+            repeated_counter+=1
+            if counter >= 6:
+                valid = True
+        else:
+            counter = 0
+
+    if valid:
+        return winn_symbol,repeated_counter
+    else:
+        return ''
+
+
+
+for word in string:
+    word=word.strip()
+    if len(word)<20 or len(word)>20:
+        print('invalid ticket')
+        continue
+    elif len(word)==20:
+        if not (word.count('@')>=12 or word.count('#') >=12 or word.count('$')>=12 or word.count('^')>=12):
+            print(f'ticket "{word}" - no match')
+            continue
+        half_one=word[:int(len(word)/2)]
+        half_two=word[int(len(word)/2):]
+        winnsymb_one,counter_one=winning_symbol(half_one)
+        winnsymb_two,counter_two=winning_symbol(half_two)
+        if winnsymb_one!='' and winnsymb_one==winnsymb_two:
+            if word.count(winnsymb_one) == 20:
+                print(f'ticket "{word}" - 10{winnsymb_one} Jackpot!')
+                continue
+            optimate_count = min(counter_one, counter_two)
+            if 6<=optimate_count<=9:
+                print(f'ticket "{word}" - {optimate_count}{winnsymb_one}')
