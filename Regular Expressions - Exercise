@@ -1,0 +1,78 @@
+1.
+import re
+text=''
+
+while True:
+    string=input()
+    if string=='':
+        break
+    text+=string
+
+pattern=r'\d+'
+result=re.findall(pattern,text)
+print(' '.join(result))
+
+
+2.
+import re
+pattern=r'\b\_{1}([a-zA-Z0-9]+)\b'
+text=input()
+results=re.findall(pattern,text)
+print(','.join(results))
+
+
+3.
+import re
+string=input()
+special_word=input()
+pattern=rf'\b{special_word}\b'
+result=re.findall(pattern,string,re.IGNORECASE)
+print(len(result))
+
+
+4.
+user_pattern=r'( |^)[A-Za-z0-9]+([._-][A-Za-z0-9]+)*'
+host_pattern=r'@[a-z]+(-[a-z]+)*(\.[a-z]+(-[a-z]+)*)+'
+pattern=rf'{user_pattern}{host_pattern}'
+text=input()
+import re
+result=re.finditer(pattern,text)
+for res in result:
+    print(res[0])
+
+
+
+
+5.
+import re
+pattern=r'^>>(?P<item>[A-Z]+[a-z]*)<<(?P<price>\d+(\.\d+)?)!(?P<quantity>\d+)$'
+furnitures=[]
+total_price=0
+
+while True:
+    command=input()
+    if command=='Purchase':
+        break
+
+    match=re.finditer(pattern,command)
+    for element in match:
+        furnitures.append(element.group('item'))
+        total_price+=float(element.group('price'))*int(element.group('quantity'))
+
+print('Bought furniture:')
+for element in furnitures:
+    print(element)
+print(f'Total money spend: {total_price:.2f}')
+
+
+6.
+import re
+pattern=r'\bwww\.[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*(\.[a-z]+)+\b'
+
+while True:
+    command=input()
+    if command =='':
+        break
+    match=re.finditer(pattern,command)
+    for res in match:
+        print(res[0])
