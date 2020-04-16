@@ -1,0 +1,95 @@
+1.
+partitions=input().split(', ')
+name_pattern=r'[a-zA-z]'
+digit_pattern='\d'
+import re
+from collections import defaultdict
+partitions_scores=defaultdict(int)
+
+
+while True:
+    command=input()
+    if command=='end of race':
+        break
+    result=re.findall(name_pattern,command)
+    name_=''.join(result)
+    name=''
+    for letter in name_:
+        if letter.isalpha():
+            name+=letter
+    if name in partitions:
+        score=re.findall(digit_pattern,command)
+        score=[int(i) for i in score]
+        partitions_scores[name]+=(sum(score))
+
+
+if command=='end of race':
+    partitions_scores=dict(sorted(partitions_scores.items(),key=lambda el:(-el[1]))[:3])
+    counter=0
+    for key in partitions_scores.keys():
+        counter+=1
+        if counter==2:
+            print(f'2nd place: {key}')
+        elif counter==3:
+            print(f'3rd place: {key}')
+        else:
+            print(f'1st place: {key}')
+
+
+
+2.
+import re
+pattern=r'^%(?P<name>[A-Z][a-z]+)%([^\.\%\$\|]+)?<(?P<item>[A-Za-z]+)>([^\.\%\$\|]+)?\|(?P<count>\d+)\|([^\.\%\$\|\d]+)?(?P<price>(\d+(\.\d+)?))\$$'
+total_price = 0
+
+
+while True:
+    command=input()
+    if command=='end of shift':
+        break
+    match=re.finditer(pattern,command)
+    for element in match:
+        total_item_price=int(element.group('count'))*float(element.group('price'))
+        total_price+=total_item_price
+        print(f"{element.group('name')}: {element.group('item')} - {total_item_price:.2f}")
+
+print(f'Total income: {total_price:.2f}')
+
+
+
+3.
+import re
+n=int(input())
+star=['s','t','a','r']
+pattern=r'@(?P<planet>[A-Z][a-z]+)[^@\-!>:]*\:(\d+)[^@\->:]*![^@\-!>:]*(?P<type>[A|D])[^@\-!>:]*![^@\-!>:]*[^@\-!>:]*\->(\d+)'
+from collections import defaultdict
+results=defaultdict(list)
+
+for i in range(n):
+    message=input()
+    count=0
+    new_message = ''
+    for letter in message:
+        if letter.lower() in star:
+            count+=1
+    for letter in message:
+        letter=chr(ord(letter)-count)
+        new_message+=letter
+    match=re.finditer(pattern,new_message)
+    for element in match:
+        results[element.group('type')].append(element.group('planet'))
+
+
+results=dict(sorted(results.items(),key=lambda el:el[0]))
+for key,values in results.items():
+    if 'A' not in results.keys():
+        print((f'Attacked planets: 0'))
+    if key=='A':
+        print(f'Attacked planets: {len(values)}')
+    elif key=='D':
+        print(f'Destroyed planets: {len(values)}')
+    values = sorted(values)
+    for value in values:
+        print(f'-> {value}')
+        
+       
